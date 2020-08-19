@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Uss</title>
+<link rel="stylesheet" href="välimus.css">
+</head>
+<body>
+<div class="container">
+
+    <h1>Snake - I'm a slithery snake</h1>
+    <p id='house'>Press F11 for full-screen</p>
+
+    <div class="button-row">
+      <button class="ez_btn" onclick="startEasyDifficulty()">Easy</button>
+      <button class="med_btn" onclick="startMedDifficulty()">Medium</button>
+      <button class="hard_btn" onclick="startHardDifficulty()">Hard</button>
+    </div>
+
+    <canvas class="canvas" height="500" width="500"></canvas>
+
+    <div class="scoreboard-placement">
+      <div id="scoreboard">
+        <p class="food-eaten-title">FOOD EATEN:</p>
+        <p class="food-eaten" id="FoodEaten">
+        <p class="snakes-killed-title">SNAKES KILLED:</p>
+        <p class="snakes-killed" id="SnakesKilled">
+      </div>
+    </div>
+  </div>
+  
+
+</body>
+<script type="text/javascript" src="food.js"></script>
+<script type="text/javascript" src="snake.js"></script>
+<script type="text/javascript" src="draw.js"></script>
+</html>
