@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
 <title>Uss</title>
@@ -6,29 +5,34 @@
 </head>
 <body>
 <div class="container">
-
+ 
     <h1>Snake - I'm a slithery snake</h1>
     <p id='house'>Press F11 for full-screen</p>
-
+ 
     <div class="button-row">
       <button class="ez_btn" id="ez_btn" >Easy</button>
       <button class="med_btn" id="med_btn" >Medium</button>
       <button class="hard_btn" id="hard_btn" >Hard</button>
     </div>
-
+ 
     <canvas class="canvas" height="500" width="500"></canvas>
-
+ 
     <div class="scoreboard-placement">
       <div id="scoreboard">
         <p class="food-eaten-title">FOOD EATEN:</p>
-        <p class="food-eaten" id="FoodEaten">
+        <p class="food-eaten" id="food-eaten-total"></p>
         <p class="snakes-killed-title">SNAKES KILLED:</p>
         <p class="snakes-killed" id="SnakesKilled">
       </div>
+      <div id="highscores"></div>
     </div>
   </div>
   
-
+ 
 </body>
+<script>
+  var gameRunning = false;
+  var highScoreSaved = false;
+</script>
 <script type="module" src="draw.js"></script>
 </html>

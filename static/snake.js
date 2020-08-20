@@ -1,5 +1,5 @@
 import Ajax from "./ajax.js";
-
+ 
 function Snake(scalar, columns, rows, ctx, canvas) {
     this.x = 0;
     this.y = 0;
@@ -9,7 +9,7 @@ function Snake(scalar, columns, rows, ctx, canvas) {
     this.total = 0;
     this.kills = 0;
     this.tail = [];
-
+ 
 //creates the snake
     this.draw = function() {
       ctx.fillStyle = "#05B016";
@@ -17,10 +17,10 @@ function Snake(scalar, columns, rows, ctx, canvas) {
         ctx.fillRect(this.tail[i].x,
           this.tail[i].y, scalar, scalar);
       }
-
+ 
       ctx.fillRect(this.x, this.y, scalar, scalar);
     }
-
+ 
 //sets what happens when snake dies (is reset)
     this.reset = function() {
       this.x = 0;
@@ -30,36 +30,36 @@ function Snake(scalar, columns, rows, ctx, canvas) {
       this.total = 0;
       this.tail = [];
     }
-
+ 
     this.update = function() {
       for (let i=0; i<this.tail.length - 1; i++) {
         this.tail[i] = this.tail[i+1];
       }
-
+ 
       this.tail[this.total - 1] =
         { x: this.x, y: this.y };
-
+ 
       this.x += this.xSpeed;
       this.y += this.ySpeed;
-
+ 
 //makes snake return to the other side of the map, if it exits on one side
       if (this.x >= canvas.width) {
         this.x = 0;
       }
-
+ 
       if (this.y >= canvas.height) {
         this.y = 0;
       }
-
+ 
       if (this.x <= -1) {
         this.x = canvas.width;
       }
-
+ 
       if (this.y <= -1) {
         this.y = canvas.height;
       }
     }
-
+ 
 //gives certain keyboard keys movement functionality
     this.changeDirection = function(direction) {
       switch(direction) {
@@ -145,7 +145,7 @@ function Snake(scalar, columns, rows, ctx, canvas) {
           break;
       }
     }
-
+ 
 //checks if the snake hits the food and adds to the length, if true
     this.eat = function(food) {
       if (this.x === food.x &&
@@ -153,16 +153,50 @@ function Snake(scalar, columns, rows, ctx, canvas) {
         this.total++;
         return true;
       }
-
+ 
       return false;
     }
-
+ 
+    function createHighscoreHtml(highscores) {
+      const list = document.createElement('ul');
+      for (let i = 0; i < highscores.length; i++) {
+        const item = document.createElement('li');
+        item.appendChild(document.createTextNode(highscores[i].highscore))
+        list.appendChild(item);
+      }
+ 
+      return list;
+    }
+ 
+    function saveHighscore(totalEaten) {
+      document.getElementById("highscores").innerHTML = "";
+      const data = { highscore: totalEaten };
+    
+      fetch("/scores", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+        .then((response) => response.json())
+        .then(() => {
+          fetch("/scores")
+            .then((response) => response.json())
+            .then((data) => {
+              document.getElementById('highscores').appendChild(createHighscoreHtml(data.reverse()));
+            });
+        });
+      highScoreSaved = true;
+    }
+ 
 //checks if the snake hits its own tail, and removes it, if true
     this.checkCollision = function() {
       for (var i=0; i<this.tail.length; i++) {
         if (this.x === this.tail[i].x &&
           this.y === this.tail[i].y) {
           this.score = this.total;
+          saveHighscore(this.total)
           this.total = 0;
           this.tail = [];
           this.kills++;
@@ -171,5 +205,5 @@ function Snake(scalar, columns, rows, ctx, canvas) {
       }
     }
   }
-
+ 
   export default Snake;

@@ -24,7 +24,7 @@
             "request": "launch",
             "reAttach": true,
             "reloadOnAttach": true,
-            "file": "${fileDirname}/test.html",
+            "file": "${fileDirname}/../static/test.html",
             "preferences": {
                 "security.fileuri.strict_origin_policy": false
             },
