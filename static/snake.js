@@ -157,17 +157,6 @@ function Snake(scalar, columns, rows, ctx, canvas) {
       return false;
     }
  
-    function createHighscoreHtml(highscores) {
-      const list = document.createElement('ul');
-      for (let i = 0; i < highscores.length; i++) {
-        const item = document.createElement('li');
-        item.appendChild(document.createTextNode(highscores[i].highscore))
-        list.appendChild(item);
-      }
- 
-      return list;
-    }
- 
     function saveHighscore(totalEaten) {
       document.getElementById("highscores").innerHTML = "";
       const data = { highscore: totalEaten };
@@ -184,7 +173,7 @@ function Snake(scalar, columns, rows, ctx, canvas) {
           fetch("/scores")
             .then((response) => response.json())
             .then((data) => {
-              document.getElementById('highscores').appendChild(createHighscoreHtml(data.reverse()));
+              document.getElementById("highscores").appendChild(createHighscoreHtml(data.reverse()));
             });
         });
       highScoreSaved = true;
@@ -205,5 +194,15 @@ function Snake(scalar, columns, rows, ctx, canvas) {
       }
     }
   }
- 
+
+  export function createHighscoreHtml(highscores) {
+    const list = document.createElement('ul');
+    for (let i = 0; i < highscores.length; i++) {
+      const item = document.createElement('li');
+      item.appendChild(document.createTextNode(highscores[i].highscore))
+      list.appendChild(item);
+    }
+
+    return list;
+  }
   export default Snake;

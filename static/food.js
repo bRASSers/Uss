@@ -13,7 +13,7 @@ function Food(scalar, columns, rows, ctx, canvas) {
 // draws the food onto the canvas
     this.draw = function() {
       ctx.fillStyle = "#E65637";
-      ctx.fillRect(this.x, this.y, scalar, scalar)
+      ctx.fillRect(this.x, this.y, scalar, scalar);
     };
   }
 
