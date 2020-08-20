@@ -1,6 +1,6 @@
 import Ajax from "./ajax.js";
 
-function Snake() {
+function Snake(scalar, columns, rows, ctx, canvas) {
     this.x = 0;
     this.y = 0;
     this.xSpeed = scalar * 1;
@@ -171,3 +171,5 @@ function Snake() {
       }
     }
   }
+
+  export default Snake;

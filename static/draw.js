@@ -1,9 +1,13 @@
+import Snake from './snake.js';
+import Food from './food.js';
+
 const canvas = document.querySelector(".canvas");
 const ctx = canvas.getContext("2d");
 const scalar = 20;
 const rows = canvas.height / scalar;
 const columns = canvas.width / scalar;
 var snake;
+var food;
 var interval;
 var gameRunning = false;
 
@@ -72,8 +76,8 @@ function setRefreshRate(refreshRate) {
 }
 
 (function setup() {
-  snake = new Snake();
-  food = new Food();
+  snake = new Snake(scalar, columns, rows, ctx, canvas);
+  food = new Food(scalar, columns, rows, ctx, canvas);
   food.pickLocation();
   startEasyDifficulty();
 
@@ -88,3 +92,7 @@ window.addEventListener("keydown", ((evt) => {
   }
 
 }));
+
+document.getElementById("ez_btn").onclick=startEasyDifficulty;
+document.getElementById("med_btn").onclick=startMedDifficulty;
+document.getElementById("hard_btn").onclick=startHardDifficulty;

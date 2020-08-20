@@ -11,9 +11,9 @@
     <p id='house'>Press F11 for full-screen</p>
 
     <div class="button-row">
-      <button class="ez_btn" onclick="startEasyDifficulty()">Easy</button>
-      <button class="med_btn" onclick="startMedDifficulty()">Medium</button>
-      <button class="hard_btn" onclick="startHardDifficulty()">Hard</button>
+      <button class="ez_btn" id="ez_btn" >Easy</button>
+      <button class="med_btn" id="med_btn" >Medium</button>
+      <button class="hard_btn" id="hard_btn" >Hard</button>
     </div>
 
     <canvas class="canvas" height="500" width="500"></canvas>
@@ -30,7 +30,5 @@
   
 
 </body>
-<script type="text/javascript" src="food.js"></script>
-<script type="text/javascript" src="snake.js"></script>
-<script type="text/javascript" src="draw.js"></script>
+<script type="module" src="draw.js"></script>
 </html>

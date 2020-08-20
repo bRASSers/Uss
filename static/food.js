@@ -1,4 +1,4 @@
-function Food() {
+function Food(scalar, columns, rows, ctx, canvas) {
     this.x;
     this.y;
 
@@ -16,3 +16,5 @@ function Food() {
       ctx.fillRect(this.x, this.y, scalar, scalar)
     };
   }
+
+export default Food;
